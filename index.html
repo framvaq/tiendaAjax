@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Ajax</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <!--navbar-->
+        <a href="#" class="navbar-brand">Tienda</a>
+        <ul class="navbar-nav ml-auto">
+            <form class="form-inline my-2 my-lg-0">
+                <input type="search" id="search" class="form-control mr-sm-2" placeholder="Buscar">
+                <button class="btn btn-success my-2 my-sm-0" type="submit">
+                    Buscar
+                </button>
+            </form>
+        </ul>
+    </nav>
+
+    <!--tabla con los productos-->
+    <div class="col-md-7">
+        <table class="table table-bordered table-sm">
+            <thead>
+                <tr>
+                    <td>Código</td>
+                    <td>Nombre</td>
+                    <td>Descripción</td>
+                    <td>Familia</td>
+                    <td>PVP</td>
+                    <td>Stock</td>
+                </tr>
+            </thead>
+            <tbody id="productos">
+                
+            </tbody>
+        </table>
+    </div>
+
+    <!--formulario para editar-->
+
+    <script src="./funciones.js"></script>
+    
+</body>
+</html>
