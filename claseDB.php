@@ -5,3 +5,5 @@ $conexion = mysqli_connect(
         'sa',
         'tienda'
     );
+
+mysqli_set_charset($conexion, "utf8");

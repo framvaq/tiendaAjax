@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <!--navbar-->
@@ -21,28 +23,45 @@
         </ul>
     </nav>
 
-    <!--tabla con los productos-->
-    <div class="col-md-7">
-        <table class="table table-bordered table-sm">
-            <thead>
-                <tr>
-                    <td>Código</td>
-                    <td>Nombre</td>
-                    <td>Descripción</td>
-                    <td>Familia</td>
-                    <td>PVP</td>
-                    <td>Stock</td>
-                </tr>
-            </thead>
-            <tbody id="productos">
-                
-            </tbody>
-        </table>
+    <div class="row">
+
+        <!--tabla con los productos-->
+        <div class="col-md-9">
+            <table class="table table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <td>Código</td>
+                        <td>Nombre</td>
+                        <td>Descripción</td>
+                        <td>Familia</td>
+                        <td>PVP</td>
+                        <td>Stock</td>
+                    </tr>
+                </thead>
+                <tbody id="productos">
+
+                </tbody>
+            </table>
+        </div>
+
+        <!--formulario para editar o añadir-->
+        <div class="col-md-3">
+            <div class="formModificar">
+                <fieldset>
+                    <legend>Modificar el stock del producto <p id="productoModificar"></p>
+                    </legend>
+                    Actualmente hay <span id="stockProductoModificar"></span> unidades. <br>
+                    <input type="hidden" id="idProductoModificar">
+                    <input class="form-control" type="number" id="nuevoStockProductoModificar">
+                    <button type="submit" class="modificarStock btn btn-warning">Modificar stock</button>
+                </fieldset>
+            </div>
+
+        </div>
+
     </div>
-
-    <!--formulario para editar-->
-
     <script src="./funciones.js"></script>
-    
+
 </body>
+
 </html>
