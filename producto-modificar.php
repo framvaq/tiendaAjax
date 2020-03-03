@@ -6,7 +6,7 @@ if (isset($_POST)){
     $stock = $_POST['stock'];
 }
 
-$query = "UPDATE producto SET stock=$stock WHERE cod=$codigo";
+$query = "UPDATE producto SET stock=$stock WHERE cod='$codigo'";
 $result = mysqli_query($conexion, $query);
 
 if (!$result){

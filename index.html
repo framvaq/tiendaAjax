@@ -15,7 +15,7 @@
         <a href="#" class="navbar-brand">Tienda</a>
         <ul class="navbar-nav ml-auto">
             <form class="form-inline my-2 my-lg-0">
-                <input type="search" id="search" class="form-control mr-sm-2" placeholder="Buscar">
+                <input type="search" id="buscar" class="form-control mr-sm-2" placeholder="Buscar">
                 <button class="btn btn-success my-2 my-sm-0" type="submit">
                     Buscar
                 </button>
@@ -45,7 +45,7 @@
         </div>
 
         <!--formulario para editar o añadir-->
-        <div class="col-md-3">
+        <div class="col-md-3 esconder">
             <div class="formModificar">
                 <fieldset>
                     <legend>Modificar el stock del producto <p id="productoModificar"></p>
@@ -56,7 +56,14 @@
                     <button type="submit" class="modificarStock btn btn-warning">Modificar stock</button>
                 </fieldset>
             </div>
-
+            <div class="formCrear">
+                <fieldset><legend>Crear un producto</legend></fieldset>
+                    <label>Nombre: <input class="form-control" type="text" id="stockNuevo" placeholder="Nombre del producto"></label>
+                    <label>Descripción: <input class="form-control" type="textarea" id="descripcionNuevo" placeholder="descripción del producto"></label>
+                    <label>Familia: <input class="form-control" type="text" maxlength="6"></label>
+                    <label>Precio: <input class="form-control" type="number" min="0"></label>
+                    <label>Stock: <input class="form-control" type="number" min="0" value="0"></label>
+            </div>
         </div>
 
     </div>

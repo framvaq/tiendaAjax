@@ -1,8 +1,7 @@
 $(function () {
     mostrarTabla();
-    let mostrarModificar = false;
+    $('.esconder').hide();
 
-    !mostrarModificar ? $('.formModificar').hide() : $('.formModificar').show();;
 
 
     $(document).on('click', '.borrar',
@@ -54,17 +53,58 @@ $(function () {
             //console.log(codigo);
             let codigo = $('#idProductoModificar').val();
             console.log(codigo);
-            let stock = $('#nuevoStockProductoModificar');
+            let stock = $('#nuevoStockProductoModificar').val();
+            console.log(stock);
             $.post('producto-modificar.php', {
                 codigo,
                 stock
             }, function (response) {
-                //console.log(response);
+                mostrarTabla();
+                $('.formModificar').hide();
+                $('.mensaje .modificar').html('Producto modificado correctamente');
             })
-
-
         }
     )
+
+    //Buscar
+    $('#buscar').keyup(function (e) {
+        //Sólo se ejecuta cuando hay algún valor
+        if ($('#buscar').val()) {
+            let busqueda = $('#buscar').val();
+            //Envío la búsqueda a php
+            $.ajax({
+                url: 'producto-buscar.php',
+                type: 'POST',
+                data: {
+                    busqueda
+                },
+                success: function (response) {
+                    //console.log(response);
+                    let productos = JSON.parse(response);
+                    let plantilla = '';
+                    //console.log(productos);
+                    productos.forEach(producto => {
+                        plantilla += `
+                        <tr idProducto="${producto.cod}">
+                                <td>${producto.cod}</td>
+                                <td>${producto.nombre}</td>
+                                <td>${producto.descripcion}</td>
+                                <td>${producto.familia}</td>
+                                <td>${producto.pvp}</td>
+                                <td>${producto.stock}</td>
+                                <td><button class="borrar btn  btn-danger">Borrar</button></td>
+                                <td><button class="modificar btn btn-warning">Modificar</button></td>
+                        </tr>
+                        `
+                    });
+                    $('#productos').html(plantilla);
+                }
+            })
+
+        } else {
+            mostrarTabla();
+        }
+    })
 
     /*FUNCIONES*/
     //Accede a la base de datos y muestra la tabla
@@ -78,16 +118,16 @@ $(function () {
                 productos.forEach(producto => {
                     plantilla += `
                         <tr idProducto="${producto.cod}">
-                                <td>${producto.cod}</td>
-                                <td>${producto.nombre}</td>
-                                <td>${producto.descripcion}</td>
-                                <td>${producto.familia}</td>
-                                <td>${producto.pvp}</td>
-                                <td>${producto.stock}</td>
-                                <td><button class="borrar btn  btn-danger">Borrar</button></td>
-                                <td><button class="modificar btn btn-warning">Modificar</button></td>
-                            </tr>
-                            `
+                            <td>${producto.cod}</td>
+                            <td>${producto.nombre}</td>
+                            <td>${producto.descripcion}</td>
+                            <td>${producto.familia}</td>
+                            <td>${producto.pvp}</td>
+                            <td>${producto.stock}</td>
+                            <td><button class="borrar btn  btn-danger">Borrar</button></td>
+                            <td><button class="modificar btn btn-warning">Modificar</button></td>
+                        </tr>
+                        `
                 });
                 $('#productos').html(plantilla);
             }
