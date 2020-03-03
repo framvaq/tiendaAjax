@@ -1,7 +1,8 @@
 $(function () {
     mostrarTabla();
-    $('.esconder').hide();
 
+    $('.formModificar').hide();
+    $('#mensaje').hide();
 
 
     $(document).on('click', '.borrar',
@@ -21,7 +22,9 @@ $(function () {
     //Formulario actualizar stock
     $(document).on('click', '.modificar',
         function () {
+
             //Primero devuelve el nombre y el stock del producto elegido para mostrarlo en el formulario
+            $('.formCrear').hide();
             let codigo = getIdBoton($(this));
             $.post('producto-datos.php', {
                 codigo
@@ -40,7 +43,6 @@ $(function () {
                     //console.log($('#idProductoModificar').val());
 
                 });
-                mostrarModificar = true;
                 $('.formModificar').show();
             })
         }
@@ -52,60 +54,41 @@ $(function () {
             //Ahora sí, se actualiza el stock del producto deseado y se muestra el mensaje del servidor
             //console.log(codigo);
             let codigo = $('#idProductoModificar').val();
-            console.log(codigo);
+            //console.log(codigo);
             let stock = $('#nuevoStockProductoModificar').val();
-            console.log(stock);
             $.post('producto-modificar.php', {
                 codigo,
                 stock
             }, function (response) {
+                $('#mensaje').html(response);
                 mostrarTabla();
                 $('.formModificar').hide();
-                $('.mensaje .modificar').html('Producto modificado correctamente');
+                $('.formCrear').show();
             })
+
+
         }
     )
 
-    //Buscar
-    $('#buscar').keyup(function (e) {
-        //Sólo se ejecuta cuando hay algún valor
-        if ($('#buscar').val()) {
-            let busqueda = $('#buscar').val();
-            //Envío la búsqueda a php
-            $.ajax({
-                url: 'producto-buscar.php',
-                type: 'POST',
-                data: {
-                    busqueda
-                },
-                success: function (response) {
-                    //console.log(response);
-                    let productos = JSON.parse(response);
-                    let plantilla = '';
-                    //console.log(productos);
-                    productos.forEach(producto => {
-                        plantilla += `
-                        <tr idProducto="${producto.cod}">
-                                <td>${producto.cod}</td>
-                                <td>${producto.nombre}</td>
-                                <td>${producto.descripcion}</td>
-                                <td>${producto.familia}</td>
-                                <td>${producto.pvp}</td>
-                                <td>${producto.stock}</td>
-                                <td><button class="borrar btn  btn-danger">Borrar</button></td>
-                                <td><button class="modificar btn btn-warning">Modificar</button></td>
-                        </tr>
-                        `
-                    });
-                    $('#productos').html(plantilla);
-                }
-            })
-
-        } else {
+    //Añadir producto
+    $(document).on('click', '.crearProducto',
+    function (e){
+        e.preventDefault();
+        let nombre = $('#nombreNuevo').val();
+        let descripcion = $('#descripcionNueva').val();
+        let familia = $('#familiaNueva').val();
+        let precio = $('#precioNuevo').val();
+        let stock = $('#stockNuevo').val();
+        $.post('producto-crear.php', {
+            nombre, descripcion, familia, precio, stock
+        }, function (response){
+            $('#mensaje').html(response);
             mostrarTabla();
+            $('.formCrear').children().children().val('');
         }
-    })
 
+        )
+    })
     /*FUNCIONES*/
     //Accede a la base de datos y muestra la tabla
     function mostrarTabla() {
@@ -118,16 +101,16 @@ $(function () {
                 productos.forEach(producto => {
                     plantilla += `
                         <tr idProducto="${producto.cod}">
-                            <td>${producto.cod}</td>
-                            <td>${producto.nombre}</td>
-                            <td>${producto.descripcion}</td>
-                            <td>${producto.familia}</td>
-                            <td>${producto.pvp}</td>
-                            <td>${producto.stock}</td>
-                            <td><button class="borrar btn  btn-danger">Borrar</button></td>
-                            <td><button class="modificar btn btn-warning">Modificar</button></td>
-                        </tr>
-                        `
+                                <td>${producto.cod}</td>
+                                <td>${producto.nombre}</td>
+                                <td>${producto.descripcion}</td>
+                                <td>${producto.familia}</td>
+                                <td>${producto.pvp}</td>
+                                <td>${producto.stock}</td>
+                                <td><button class="borrar btn  btn-danger">Borrar</button></td>
+                                <td><button class="modificar btn btn-warning">Modificar</button></td>
+                            </tr>
+                            `
                 });
                 $('#productos').html(plantilla);
             }

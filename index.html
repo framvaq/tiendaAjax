@@ -22,7 +22,7 @@
             </form>
         </ul>
     </nav>
-
+    <div id="mensaje"></div>
     <div class="row">
 
         <!--tabla con los productos-->
@@ -45,25 +45,26 @@
         </div>
 
         <!--formulario para editar o añadir-->
-        <div class="col-md-3 esconder">
+        <div class="col-md-3">
             <div class="formModificar">
                 <fieldset>
                     <legend>Modificar el stock del producto <p id="productoModificar"></p>
                     </legend>
                     Actualmente hay <span id="stockProductoModificar"></span> unidades. <br>
                     <input type="hidden" id="idProductoModificar">
-                    <input class="form-control" type="number" id="nuevoStockProductoModificar">
+                    <input class="form-control" type="number" min="0" id="nuevoStockProductoModificar">
                     <button type="submit" class="modificarStock btn btn-warning">Modificar stock</button>
                 </fieldset>
             </div>
-            <div class="formCrear">
+            <form class="formCrear">
                 <fieldset><legend>Crear un producto</legend></fieldset>
-                    <label>Nombre: <input class="form-control" type="text" id="stockNuevo" placeholder="Nombre del producto"></label>
-                    <label>Descripción: <input class="form-control" type="textarea" id="descripcionNuevo" placeholder="descripción del producto"></label>
-                    <label>Familia: <input class="form-control" type="text" maxlength="6"></label>
-                    <label>Precio: <input class="form-control" type="number" min="0"></label>
-                    <label>Stock: <input class="form-control" type="number" min="0" value="0"></label>
-            </div>
+                    <label>Nombre: <input class="form-control" type="text" id="nombreNuevo" placeholder="Nombre del producto"></label>
+                    <label>Descripción: <input class="form-control" type="textarea" id="descripcionNueva" placeholder="descripción del producto"></label>
+                    <label>Familia: <input class="form-control" type="text" maxlength="6" id="familiaNueva"></label>
+                    <label>Precio: <input class="form-control" type="number" min="0" id="precioNuevo"></label>
+                    <label>Stock: <input class="form-control" type="number" min="0" value="0" id="stockNuevo"></label>
+                    <button type="submit" class="crearProducto btn btn-success">Crear Producto</button>
+            </form>
         </div>
 
     </div>
