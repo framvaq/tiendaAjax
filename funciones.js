@@ -60,9 +60,8 @@ $(document).on('click', '.modificarStock',
         }, function (response) {
             //console.log(response);
         })
-
-
-    })
+    }
+)
 
 /*FUNCIONES*/
 //Accede a la base de datos y muestra la tabla
