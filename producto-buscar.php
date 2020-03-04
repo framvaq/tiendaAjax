@@ -6,7 +6,7 @@ if (isset($_POST['busqueda'])){
 }
 
 if (!empty($busqueda)){
-    $query = "SELECT * FROM producto WHERE nombre LIKE '$busqueda%'";
+    $query = "SELECT * FROM producto WHERE nombre LIKE '%$busqueda%'";
     $result = mysqli_query($conexion, $query);
 
     if (!$result){

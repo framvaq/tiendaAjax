@@ -15,7 +15,7 @@
         <a href="#" class="navbar-brand">Tienda</a>
         <ul class="navbar-nav ml-auto">
             <form class="form-inline my-2 my-lg-0">
-                <input type="search" id="buscar" class="form-control mr-sm-2" placeholder="Buscar">
+                <input type="search" id="buscar" class="form-control mr-sm-2" placeholder="Buscar producto">
                 <button class="btn btn-success my-2 my-sm-0" type="submit">
                     Buscar
                 </button>
@@ -58,11 +58,11 @@
             </div>
             <form class="formCrear">
                 <fieldset><legend>Crear un producto</legend></fieldset>
-                    <label>Nombre: <input class="form-control" type="text" id="nombreNuevo" placeholder="Nombre del producto"></label>
-                    <label>Descripción: <input class="form-control" type="textarea" id="descripcionNueva" placeholder="descripción del producto"></label>
-                    <label>Familia: <input class="form-control" type="text" maxlength="6" id="familiaNueva"></label>
-                    <label>Precio: <input class="form-control" type="number" min="0" id="precioNuevo"></label>
-                    <label>Stock: <input class="form-control" type="number" min="0" value="0" id="stockNuevo"></label>
+                    <label>Nombre: <input class="form-control" type="text" id="nombreNuevo" placeholder="Nombre del producto" required></label>
+                    <label>Descripción: <input class="form-control" type="textarea" id="descripcionNueva" placeholder="descripción del producto" required></label>
+                    <label>Familia: <input class="form-control" type="text" maxlength="6" id="familiaNueva" required></label>
+                    <label>Precio: <input class="form-control" type="number" min="0" id="precioNuevo" required></label>
+                    <label>Stock: <input class="form-control" type="number" min="0" value="0" id="stockNuevo" required></label>
                     <button type="submit" class="crearProducto btn btn-success">Crear Producto</button>
             </form>
         </div>
