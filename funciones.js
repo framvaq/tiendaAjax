@@ -110,6 +110,7 @@ $(function () {
         })
 
     //Buscar
+    //TODO modificar la función mostrarTabla() y productos-mostrar.php para que admitan parámetros de búsqueda (nombre, codigo, familia...)
     $('#buscar').keyup(function (e) {
 
         $('#mensaje').hide();
